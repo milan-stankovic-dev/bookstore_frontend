@@ -1,0 +1,22 @@
+ul {
+    display: flex;
+    column-gap: 30px;
+    // justify-content: space-between;
+    color:aqua;
+    align-items: left;
+    list-style: none;
+    background-color: grayscale($color: #000000be);
+    margin-top: 0;
+    padding: 2%;
+    font-weight: bolder;
+
+    li {
+        font-size: larger;
+        cursor: pointer;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+ }
