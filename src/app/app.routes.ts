@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [{
-    path:'home',
+    path:'',
     pathMatch: 'full',
-    loadComponent: () => import('./components/home/home/home.component')
+    loadComponent: () => import('./components/home/home.component')
         .then(m => m.HomeComponent)
 },
 {
     path:'products',
     pathMatch: 'full',
-    loadComponent: () => import('./components/products/products/products.component')
-    .then(m => m.ProductsComponent)
+    loadComponent: () => import('./components/books/books.component')
+    .then(m => m.BooksComponent)
 },
 {
     path:'cart',
