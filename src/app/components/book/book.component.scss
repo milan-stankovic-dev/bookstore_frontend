@@ -8,8 +8,10 @@
     border-radius: 10px;
     padding: 5px 15px 15px 15px;
     background-color: rgb(66, 61, 61); 
-    box-shadow: 0 0 8px 4px black, /* Outer black glow */
-                0 0 6px 2px rgb(50, 50, 50), /* Middle dark gray */
+    margin-bottom: 25px;
+    margin-right: 25px;
+    box-shadow: 0 0 8px 4px black,
+                0 0 6px 2px rgb(50, 50, 50), 
                 0 0 4px 1px rgb(66, 61, 61);
 }
 

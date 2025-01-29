@@ -1,16 +1,16 @@
 <div class="containerDiv">
-    <h1 class="titleH1">{{ book.title }}</h1>
+    <h1 class="titleH1">{{ book().title }}</h1>
     <div class="imgContainer">
         <!-- <img [src]="book.imageUrl" > -->
-         @if (book.imageUrl) {
-            <img [src]="book.imageUrl">
+         @if (book().imageUrl) {
+            <img [src]="book().imageUrl">
          } @else {
             <h2>Display image not available</h2>
          }
     </div>
-    <p class="info-regular">Price: {{ book.price }}</p>
-    <p class="info-regular">ISBN: {{ book.isbn }}</p>
-    <p class="info-regular">Author: {{ book.author.name }} {{ book.author.lastName }}</p>
-    <p class="info-regular">Category: {{ book.category.name }}</p>
-    <p class="info-regular">Genre: {{ book.genre.name }}</p>
+    <p class="info-regular">Price: {{ book().price }}</p>
+    <p class="info-regular">ISBN: {{ book().isbn }}</p>
+    <p class="info-regular">Author: {{ book().author.name }} {{ book().author.lastName }}</p>
+    <p class="info-regular">Category: {{ book().category.name }}</p>
+    <p class="info-regular">Genre: {{ book().genre.name }}</p>
 </div>
