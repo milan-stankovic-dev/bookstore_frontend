@@ -1,0 +1,35 @@
+.containerDiv {
+    // border: 5px solid black; 
+    // box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); 
+    font-family: 'Arial', sans-serif; 
+    font-size: 16px;
+    color: #261916; 
+    width:200px;
+    border-radius: 10px;
+    padding: 5px 15px 15px 15px;
+    background-color: rgb(66, 61, 61); 
+    box-shadow: 0 0 8px 4px black, /* Outer black glow */
+                0 0 6px 2px rgb(50, 50, 50), /* Middle dark gray */
+                0 0 4px 1px rgb(66, 61, 61);
+}
+
+.imgContainer {
+    margin: 0 -10px 10px -10px;
+    border-radius: 10px;
+}
+
+.titleH1 {
+    background-color: rgb(14, 155, 155); 
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    margin: 0 -10px 10px -10px; 
+}
+
+.info-regular {
+    font-size: 14px;
+    color: thistle; 
+    margin: 5px 0;
+}
