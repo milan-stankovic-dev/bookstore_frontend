@@ -1,4 +1,9 @@
-<p>{{numOfPages}}</p>
+<div class="book-container">
 @for (book of this.booksFromAPI; track book.id) {
     <app-book [book]="book"></app-book>
 }
+</div>
+
+<app-paging-buttons 
+[numberOfPages]="numOfPages"
+(selectedPage)="onPageSelected($event)"></app-paging-buttons>
