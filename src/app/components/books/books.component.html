@@ -1,4 +1,4 @@
-<p>books works!</p>
+<p>{{numOfPages}}</p>
 @for (book of this.booksFromAPI; track book.id) {
     <app-book [book]="book"></app-book>
 }

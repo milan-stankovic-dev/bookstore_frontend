@@ -13,17 +13,19 @@ import { BookComponent } from "../book/book.component";
 })
 export class BooksComponent implements OnInit{
   booksFromAPI : Array<BookFull> = []
+  numOfPages: number = 0
   service = inject(BooksService)
 
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
-    this.service.getAllBooks()
+    this.service.getAllBooks(1,2)
     .pipe(
       catchError(err => {
         console.log(err);
         throw err;
       })).subscribe(response => {
-        this.booksFromAPI = response
+        this.booksFromAPI = response.books
+        this.numOfPages = response.numOfPages
       })
   }
 
