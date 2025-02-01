@@ -56,3 +56,34 @@
     color: thistle; 
     margin: 5px 0;
 }
+
+.btn-order {
+    border-radius: 7px;
+    background-color: lightseagreen;
+    padding: 7px;
+    color: rgb(66, 66, 66);
+}
+
+dialog {
+    width: 400px; 
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: darkgrey;
+    text-align: center;
+}
+
+dialog[open] {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.numInput {
+    width: 100px;
+}
