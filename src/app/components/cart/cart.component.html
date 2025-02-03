@@ -1,3 +1,8 @@
-@if(orderedBook) {
+<!-- @if(ord) {
 <app-book [book]="orderedBook"></app-book>
+} -->
+
+@for (book of orderedBooks; track book.id) {
+    <!-- <h1>Hello, world!</h1> -->
+    <app-book [book]="book"></app-book>
 }

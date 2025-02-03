@@ -10,13 +10,14 @@ import { BooksService } from '../../services/books.service';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  orderedBookJSON : string | null;
-  orderedBook : BookFull | null;
+  orderedBooks : Array<BookFull>;
   
     constructor() {
-      this.orderedBookJSON = sessionStorage.getItem('orderedBook');
+      const orderedBooksJSON = sessionStorage.getItem('bookCartData');
       
-      this,this.orderedBook = this.orderedBookJSON === null ? null :
-      JSON.parse(this.orderedBookJSON);
+      this.orderedBooks = orderedBooksJSON === null ? [] :
+      JSON.parse(orderedBooksJSON);
+
+      console.log("Cart component. Books: ", this.orderedBooks);
     }
 }
