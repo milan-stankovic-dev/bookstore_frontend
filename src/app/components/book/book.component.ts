@@ -16,14 +16,24 @@ outputBook = output<BookFull>();
 logValue() {
  console.log("VALUE: ", this.orderAmount)
 }
+
   book = input.required<BookFull>();
   orderAmount : number = 0
 
 orderAttempt() {
   console.log("Attempted order.", this.orderAmount);
   this.orderDialog.nativeElement.close();
-  this.book().orderAmount = this.orderAmount;
-  this.book().hideOrderButton = true;
-  this.outputBook.emit(this.book());
+
+  const bookOrderData : BookFull =
+   { ...this.book(), orderAmount: this.orderAmount, 
+      hideOrderButton: true};
+
+  sessionStorage.setItem('orderedBook', 
+    JSON.stringify(bookOrderData));
+
+  sessionStorage.setItem('num', '1');
+
+  console.log('Saved book: ', JSON.stringify(bookOrderData), 
+" In local storage.");
 }
 }

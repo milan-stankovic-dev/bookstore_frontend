@@ -32,6 +32,8 @@
          </div>
     </dialog>
 
+    @if(!book().hideOrderButton) {
     <button class="btn-order" (click)="orderDialog.show()">
       Order</button>
+    }
 </div>
