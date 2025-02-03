@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent {
   paths: Array<string> = [
     "home",
-    "products",
+    "books",
     "cart"
   ]
 }

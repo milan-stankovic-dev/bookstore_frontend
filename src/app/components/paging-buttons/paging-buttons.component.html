@@ -1,0 +1,3 @@
+@for (pageNum of getRange(); track $index) {
+    <button (click)="sendPageToParent(pageNum)" class="paging-button">{{pageNum}}</button>
+}

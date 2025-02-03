@@ -7,7 +7,7 @@ export const routes: Routes = [{
         .then(m => m.HomeComponent)
 },
 {
-    path:'products',
+    path:'books',
     pathMatch: 'full',
     loadComponent: () => import('./components/books/books.component')
     .then(m => m.BooksComponent)
@@ -17,6 +17,12 @@ export const routes: Routes = [{
     pathMatch: 'full',
     loadComponent: () => import('./components/cart/cart.component')
     .then(m => m.CartComponent)
+},
+{
+    path:'book',
+    pathMatch: 'full',
+    loadComponent: () =>import('./components/book/book.component')
+    .then(m => m.BookComponent)
 }];
 
 /*
