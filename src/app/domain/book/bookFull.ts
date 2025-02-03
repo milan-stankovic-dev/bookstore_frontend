@@ -10,5 +10,7 @@ export type BookFull = {
     imageUrl: string | undefined,
     author: AuthorBookDisplay,
     category: CategoryFull,
-    genre: GenreFull
+    genre: GenreFull,
+    orderAmount: number | undefined,
+    hideOrderButton: boolean
 }

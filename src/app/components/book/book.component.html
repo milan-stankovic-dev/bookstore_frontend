@@ -16,6 +16,11 @@
     <p class="info-regular">Author: {{ book().author.name }} {{ book().author.lastName }}</p>
     <p class="info-regular">Category: {{ book().category.name }}</p>
     <p class="info-regular">Genre: {{ book().genre.name }}</p>
+    <br>
+
+    @if(book().orderAmount) {
+      <p class="info-order">Order Amount: {{ book().orderAmount }}</p>
+    }
     
     <dialog #orderDialog>
          <p>Please enter the number of copies you would like to order.</p>
@@ -23,7 +28,7 @@
          <input class="numInput" type="number" min ="0" placeholder="Please enter your order here" 
                [(ngModel)]="orderAmount" (keypress)="logValue()">
          <button (click)="orderDialog.close()">Cancel</button>
-         <button (click)="orderDialog.close()" [disabled]="!orderAmount || orderAmount <= 0">Accept</button>
+         <button (click)="orderAttempt()" [disabled]="!orderAmount || orderAmount <= 0">Accept</button>
          </div>
     </dialog>
 
