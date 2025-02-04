@@ -11,6 +11,12 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
+
+  attemptOrder() {
+  // throw new Error('Method not implemented.');
+    console.log('Order attempted. Ordered books: ', this.orderedBooks);
+  }
+
   orderedBooks : Array<BookFull>;
   service: CartService = inject(CartService);
 
