@@ -1,6 +1,7 @@
-import { Component, ElementRef, input, output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
 import { BookFull } from '../../domain/book/bookFull';
 import {FormsModule} from '@angular/forms';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-book',
@@ -9,8 +10,11 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './book.component.scss'
 })
 export class BookComponent {
+readonly BOOK_DATA = 'bookCartData';
+
 @ViewChild('orderDialog') orderDialog!: ElementRef;
 outputBook = output<BookFull>();
+cartService: CartService = inject(CartService);
 
 logValue() {
  console.log("VALUE: ", this.orderAmount)
@@ -27,26 +31,36 @@ orderAttempt() {
    { ...this.book(), orderAmount: this.orderAmount, 
       hideOrderButton: true};
 
-  this.addBookToSessionStorage(bookOrderData);
+  // this.addBookToSessionStorage(bookOrderData);
 
-  console.log('Saved book: ', JSON.stringify(bookOrderData), 
-    " In local storage.");
+  // console.log('Saved book: ', JSON.stringify(bookOrderData), 
+    // " In local storage.");
+    this.cartService.addBookToCart(bookOrderData);
+}
+
+removeFromCart() {
+  // let currentOrder: Array<BookFull> = this.getCurrentSessionStorage();
+  // currentOrder = currentOrder.filter(cartBook => cartBook.id !== this.book().id);
+  // sessionStorage.setItem(this.BOOK_DATA, JSON.stringify(currentOrder));
+  this.cartService.removeFromCart(this.book().id);
+}
+
+getCurrentSessionStorage() : Array<BookFull> {
+  let booksFromCartString : string | null =
+  sessionStorage.getItem(this.BOOK_DATA);
+
+  return booksFromCartString === null ? [] : JSON.parse(booksFromCartString);
 }
 
  addBookToSessionStorage(aBook: BookFull) {
-    const BOOK_DATA : string = 'bookCartData';
-
-    let booksFromCartString : string | null =
-     sessionStorage.getItem(BOOK_DATA);
     let booksFromCart : Array<BookFull> = 
-      booksFromCartString === null ? [] : 
-      JSON.parse(booksFromCartString); 
+      this.getCurrentSessionStorage();
 
     console.log('Adding book to session storage. Current storage: ',
       booksFromCart);
 
     if(booksFromCart.length === 0) {
-      sessionStorage.setItem(BOOK_DATA, 
+      sessionStorage.setItem(this.BOOK_DATA, 
         JSON.stringify([aBook]));
         return;
     }
@@ -61,7 +75,7 @@ orderAttempt() {
       booksFromCart.push(aBook);
     }
 
-    sessionStorage.setItem(BOOK_DATA, 
+    sessionStorage.setItem(this.BOOK_DATA, 
       JSON.stringify(booksFromCart));
  }
 }

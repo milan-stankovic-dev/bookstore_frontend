@@ -2,6 +2,7 @@ import { Component, computed, inject, input } from '@angular/core';
 import { BookFull } from '../../domain/book/bookFull';
 import { BookComponent } from "../book/book.component";
 import { BooksService } from '../../services/books.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +12,12 @@ import { BooksService } from '../../services/books.service';
 })
 export class CartComponent {
   orderedBooks : Array<BookFull>;
-  
-    constructor() {
-      const orderedBooksJSON = sessionStorage.getItem('bookCartData');
-      
-      this.orderedBooks = orderedBooksJSON === null ? [] :
-      JSON.parse(orderedBooksJSON);
+  service: CartService = inject(CartService);
 
-      console.log("Cart component. Books: ", this.orderedBooks);
+    constructor() {
+      this.orderedBooks = [];
+      this.service.cart$.subscribe(books => {
+        this.orderedBooks =  books;
+      });
     }
 }
