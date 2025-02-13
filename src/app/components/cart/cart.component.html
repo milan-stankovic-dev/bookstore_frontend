@@ -7,8 +7,9 @@
     <app-book [book]="book"></app-book>
 }
 
-@if(orderedBooks.length > 0) {
-<button class="btn-order" (click)="attemptOrder()">
-    Finalize order</button>
-}
 </div>
+
+@if(orderedBooks.length > 0) {
+    <button class="btn-order" (click)="attemptOrder()">
+        Finalize order</button>
+}
