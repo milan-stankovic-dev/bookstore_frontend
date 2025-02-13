@@ -1,5 +1,14 @@
-<p>cart works!</p>
+<div class="background">
+<img src="/shoppingCart.webp" alt="imageFailed" class="background">
+</div>
 
-@if(book()) {
-<app-book [book]="book()!"></app-book>
+<div class="books-container">
+@for (book of orderedBooks; track book.id) {
+    <app-book [book]="book"></app-book>
 }
+
+@if(orderedBooks.length > 0) {
+<button class="btn-order" (click)="attemptOrder()">
+    Finalize order</button>
+}
+</div>

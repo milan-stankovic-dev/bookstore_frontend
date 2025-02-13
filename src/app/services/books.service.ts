@@ -19,6 +19,7 @@ export class BooksService {
   }
 
   getBook() : Signal<BookFull | undefined> {
+    console.log("Gettnig book. Book:", this.orderedBook());
     return this.orderedBook;
   }
 

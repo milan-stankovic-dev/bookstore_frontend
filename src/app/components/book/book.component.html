@@ -32,6 +32,10 @@
          </div>
     </dialog>
 
+    @if(!book().hideOrderButton) {
     <button class="btn-order" (click)="orderDialog.show()">
-      Order</button>
+      Add to cart</button>
+    } @else {
+      <button class="btn-remove" (click)="removeFromCart()">Remove from cart</button>
+    }
 </div>
