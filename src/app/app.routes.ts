@@ -23,6 +23,12 @@ export const routes: Routes = [{
     pathMatch: 'full',
     loadComponent: () =>import('./components/book/book.component')
     .then(m => m.BookComponent)
+},
+{
+    path:'login',
+    pathMatch: 'full',
+    loadComponent: ()=>import('./components/login/login.component')
+    .then(m => m.LoginComponent)
 }];
 
 /*

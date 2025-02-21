@@ -11,6 +11,7 @@ export class HeaderComponent {
   paths: Array<string> = [
     "home",
     "books",
-    "cart"
+    "cart",
+    "login"
   ]
 }

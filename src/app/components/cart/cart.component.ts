@@ -26,6 +26,7 @@ export class CartComponent {
       date: now
     };
 
+    console.log("Saving order. Data: ",JSON.stringify(orderSave));
     this.service.saveOrder(orderSave).subscribe({
       next: () => alert('Order placed successfully!'),
       error: (error) => alert(JSON.stringify(error)),
