@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginRequest } from '../../domain/auth/LoginRequest';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,6 +11,8 @@ import { LoginRequest } from '../../domain/auth/LoginRequest';
 })
 export class LoginComponent {
 
+service = inject(AuthService)
+
 form = new FormGroup({
   email: new FormControl('', Validators.required),
   password: new FormControl('', Validators.required)
@@ -17,11 +20,6 @@ form = new FormGroup({
 
   onSubmit() {
     console.log("Submit attempted!");
-
-    // const requestData = new LoginRequest(
-    //   this.form.get('email'),
-    //   this.form.get('password')
-    // )
 
     const userEmail = this.form.get('email')?.value;
     const userPassword = this.form.get('password')?.value;
@@ -35,6 +33,18 @@ form = new FormGroup({
       password: userPassword!
     }
     alert('Request: ' + JSON.stringify(requestData)); 
+
+    this.service.login(requestData).subscribe({
+      next: response => {
+        const token = response.token;
+        const userID = response.userID;
+        alert('User logged in correctly! ' +
+            JSON.stringify(token));
+        localStorage.setItem('token', token);
+        localStorage.setItem('userID', userID.toString());
+      },
+      error: err => alert(JSON.stringify(err))
+    });
   }
 
 }

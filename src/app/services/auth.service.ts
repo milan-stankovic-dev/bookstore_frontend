@@ -12,6 +12,14 @@ import { AppUser } from '../domain/auth/user';
 export class AuthService {
   private readonly AUTH_URL = 'http://localhost:8080/auth';
   http = inject(HttpClient);
+
+  public getToken() : string | null {
+    return localStorage.getItem('token');
+  }
+
+  public getUserID() : number | null {
+    return localStorage.getItem('userID') as number | null;
+  }
   
   public login(request: LoginRequest) : Observable<TokenResponse> {
     return this.http.post<TokenResponse>(this.AUTH_URL + '/login', request);

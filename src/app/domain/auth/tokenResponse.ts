@@ -1,3 +1,4 @@
 export type TokenResponse = {
-    token: string
+    token: string,
+    userID: number
 }

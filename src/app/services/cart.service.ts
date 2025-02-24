@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BookFull } from '../domain/book/bookFull';
 import { OrderSave } from '../domain/order/orderSave';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderFull } from '../domain/order/orderFull';
 
 @Injectable({
@@ -48,8 +48,9 @@ export class CartService {
     this.cartSubject.next(books);
   }
 
-  public saveOrder(order: OrderSave) : Observable<OrderFull> {
-      return this.http.post<OrderFull>(this.CART_URL,order);
+  public saveOrder(order: OrderSave, token: string) : Observable<OrderFull> {
+      const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+      return this.http.post<OrderFull>(this.CART_URL,order, { headers });
   }
 
   constructor() { }
