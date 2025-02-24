@@ -42,6 +42,8 @@ form = new FormGroup({
             JSON.stringify(token));
         localStorage.setItem('token', token);
         localStorage.setItem('userID', userID.toString());
+        
+        this.service.navigateToHome();
       },
       error: err => alert(JSON.stringify(err))
     });
