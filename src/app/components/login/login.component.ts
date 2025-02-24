@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginRequest } from '../../domain/auth/LoginRequest';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, RedirectableRoutes } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -43,7 +43,7 @@ form = new FormGroup({
         localStorage.setItem('token', token);
         localStorage.setItem('userID', userID.toString());
         
-        this.service.navigateToHome();
+        this.service.navigateTo(RedirectableRoutes.HOME, 2000);
       },
       error: err => alert(JSON.stringify(err))
     });

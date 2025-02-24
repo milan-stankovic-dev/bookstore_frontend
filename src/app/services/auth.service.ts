@@ -40,11 +40,16 @@ export class AuthService {
     return this.http.post<AppUser>(this.AUTH_URL + '/register', request);
   }
 
-  public navigateToHome() {
+  public navigateTo(location : RedirectableRoutes, delayInMs : number) {
     setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 2000)
+      this.router.navigate([location]);
+    }, delayInMs)
   }
 
   constructor() { }
+}
+
+export enum RedirectableRoutes {
+    HOME = '/',
+    LOGIN = '/login'
 }
