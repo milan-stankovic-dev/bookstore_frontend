@@ -14,6 +14,10 @@ ul {
         font-size: larger;
         cursor: pointer;
     }
+
+    li:last-child {
+        margin-left: auto;
+    }
 }
 
 body {

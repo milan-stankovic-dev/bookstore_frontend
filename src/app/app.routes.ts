@@ -35,6 +35,12 @@ export const routes: Routes = [{
     pathMatch: 'full',
     loadComponent: ()=>import('./components/logout/logout.component')
     .then(m => m.LogoutComponent)
+},
+{
+    path:'register',
+    pathMatch: 'full',
+    loadComponent: () => import('./components/register/register.component')
+        .then(m => m.RegisterComponent)
 }];
 
 /*
