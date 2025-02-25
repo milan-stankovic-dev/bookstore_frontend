@@ -1,13 +1,15 @@
 <nav> 
     <ul>
-        <li routerLink="/">{{ paths[0] }}</li>
-        <li routerLink="/books">{{ paths[1] }}</li>
+        <li routerLink="/">home</li>
+        <li routerLink="/books">books</li>
         @if (isUserLoggedIn()) {
-            <li routerLink="/cart">{{ paths[2] }}</li>
-            <li routerLink="/logout">{{ 'logout' }}</li>
+            <li routerLink="/cart">cart</li>
+            <li routerLink="/logout">logout</li>
         } @else {
-        <li routerLink="/register"> register </li>
-        <li routerLink="/login"> {{ paths[3] }}</li>
+            <div class="auth-links">
+                <li class="register-li" routerLink="/register">register</li>
+                <li routerLink="/login">login</li>
+            </div>
         }
     </ul>
 </nav>

@@ -11,14 +11,6 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent {
   authService = inject(AuthService)
 
-  paths: Array<string> = [
-    "home",
-    "books",
-    "cart",
-    "login",
-    "logout"
-  ]
-
   isUserLoggedIn() : Boolean{
     return this.authService.isUserLoggedIn();
   }
