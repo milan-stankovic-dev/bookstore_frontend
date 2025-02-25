@@ -1,28 +1,31 @@
-<p>register works!</p>
-
-<form [formGroup]="form" (submit)="onSubmit()">
-    <div>
+<div class="auth-content-pane background-container">
+    <img src="/login.avif" alt="image failed" class="background-img">
+<form class="auth-form" [formGroup]="form" (submit)="onSubmit()">
+    <div class="auth-field-div">
         <label for="name">Please enter your name: </label>
         <br>
-        <input type="text" placeholder="name" formControlName="name">
+        <input class="auth-input" type="text" placeholder="name" formControlName="name">
     </div>
-    <div>
+    <div class="auth-field-div">
         <label for="lastName">Please enter your last name: </label>
         <br>
-        <input type="text" placeholder="lastName" formControlName="email">
+        <input class="auth-input" type="text" placeholder="lastName" formControlName="lastName">
     </div>
-    <div>
+    <div class="auth-field-div">
         <label for="email">Please enter your email: </label>
         <br>
-        <input type="text" placeholder="email" formControlName="email">
+        <input class="auth-input" type="text" placeholder="email" formControlName="email">
     </div>
-    <div>
+    <div class="auth-field-div">
         <label for="password">Please enter your password: </label>
         <br>
-        <input type="password" placeholder="password" formControlName="password">
+        <input class="auth-input" type="password" placeholder="password" formControlName="password">
     </div>
-    <br>
-    <div>
-        <button type="submit">Register</button>
+    @if(!this.submitted){
+    <div class="auth-field-div">
+        <button class="green-btn" type="submit">Register</button>
+        <br>
     </div>
+    }
 </form>
+</div>

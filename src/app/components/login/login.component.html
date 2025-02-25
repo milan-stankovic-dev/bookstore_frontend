@@ -1,18 +1,21 @@
-<p>login works!</p>
-
-<form [formGroup]="form" (submit)="onSubmit()">
-    <div>
+<div class="auth-content-pane background-container">
+    <img src="/login.avif" alt="image failed" class="background-img">
+    <form class ="auth-form" [formGroup]="form" (submit)="onSubmit()">
+    <div class="auth-field-div">
         <label for="email">Please enter your email: </label>
         <br>
-        <input type="text" placeholder="email" formControlName="email">
+        <input class="auth-input" type="text" placeholder="email" formControlName="email">
     </div>
-    <div>
+    <div class="auth-field-div">
         <label for="password">Please enter your password: </label>
         <br>
-        <input type="password" placeholder="password" formControlName="password">
-    </div>
-    <br>
+        <input type="password" class="auth-input" placeholder="password" formControlName="password">
+    </div>  
+    @if (!this.submitted) {
     <div>
-        <button type="submit">Login</button>
+        <button class="green-btn" type="submit">Login</button>
     </div>
+    }
 </form>
+</div>
+

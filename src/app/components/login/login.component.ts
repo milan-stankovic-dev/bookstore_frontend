@@ -7,25 +7,30 @@ import { AuthService, RedirectableRoutes } from '../../services/auth.service';
   selector: 'app-auth',
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss',
+     '../auth_styles/auth.scss']
 })
 export class LoginComponent {
-
+submitted = false;
 service = inject(AuthService)
 
 form = new FormGroup({
-  email: new FormControl('', Validators.required),
-  password: new FormControl('', Validators.required)
+  email: new FormControl('', [Validators.required, Validators.nullValidator, Validators.minLength(1)]),
+  password: new FormControl('', [Validators.required, Validators.nullValidator, Validators.minLength(1)])
 });
 
   onSubmit() {
+    this.submitted = true;
     console.log("Submit attempted!");
 
     const userEmail = this.form.get('email')?.value;
     const userPassword = this.form.get('password')?.value;
 
-    if(userEmail === undefined || userPassword === undefined) {
-      return;
+      if(this.form.invalid) {
+        console.log(
+          'EMAIL ', userEmail, ' PASSWORD ', userPassword);
+        alert('Please fill in all fields then try again.');
+        return;
     }
 
     const requestData: LoginRequest = {
