@@ -1,3 +1,5 @@
+<div class="btn-display">
 @for (pageNum of getRange(); track $index) {
     <button (click)="sendPageToParent(pageNum)" class="green-btn">{{pageNum}}</button>
 }
+</div>
