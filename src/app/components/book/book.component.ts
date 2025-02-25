@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, input, output, ViewChild } from '@angula
 import { BookFull } from '../../domain/book/bookFull';
 import {FormsModule} from '@angular/forms';
 import { CartService } from '../../services/cart.service';
+import { AuthService, RedirectableRoutes } from '../../services/auth.service';
 
 @Component({
   selector: 'app-book',
@@ -10,11 +11,13 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './book.component.scss'
 })
 export class BookComponent {
+
 readonly BOOK_DATA = 'bookCartData';
 
 @ViewChild('orderDialog') orderDialog!: ElementRef;
 outputBook = output<BookFull>();
 cartService: CartService = inject(CartService);
+authService = inject(AuthService);
 
 logValue() {
  console.log("VALUE: ", this.orderAmount)
@@ -31,17 +34,10 @@ orderAttempt() {
    { ...this.book(), orderAmount: this.orderAmount, 
       hideOrderButton: true};
 
-  // this.addBookToSessionStorage(bookOrderData);
-
-  // console.log('Saved book: ', JSON.stringify(bookOrderData), 
-    // " In local storage.");
     this.cartService.addBookToCart(bookOrderData);
 }
 
 removeFromCart() {
-  // let currentOrder: Array<BookFull> = this.getCurrentSessionStorage();
-  // currentOrder = currentOrder.filter(cartBook => cartBook.id !== this.book().id);
-  // sessionStorage.setItem(this.BOOK_DATA, JSON.stringify(currentOrder));
   this.cartService.removeFromCart(this.book().id);
 }
 
@@ -78,4 +74,14 @@ getCurrentSessionStorage() : Array<BookFull> {
     sessionStorage.setItem(this.BOOK_DATA, 
       JSON.stringify(booksFromCart));
  }
+
+ isUserLoggedIn() : Boolean {
+    return this.authService.isUserLoggedIn();
+  }
+
+  redirectToLogin() {
+    // throw new Error('Method not implemented.');
+    this.authService.navigateTo(RedirectableRoutes.LOGIN, 2000);
+  }
+    
 }

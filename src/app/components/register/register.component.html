@@ -1,0 +1,28 @@
+<p>register works!</p>
+
+<form [formGroup]="form" (submit)="onSubmit()">
+    <div>
+        <label for="name">Please enter your name: </label>
+        <br>
+        <input type="text" placeholder="name" formControlName="name">
+    </div>
+    <div>
+        <label for="lastName">Please enter your last name: </label>
+        <br>
+        <input type="text" placeholder="lastName" formControlName="email">
+    </div>
+    <div>
+        <label for="email">Please enter your email: </label>
+        <br>
+        <input type="text" placeholder="email" formControlName="email">
+    </div>
+    <div>
+        <label for="password">Please enter your password: </label>
+        <br>
+        <input type="password" placeholder="password" formControlName="password">
+    </div>
+    <br>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>

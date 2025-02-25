@@ -5,6 +5,8 @@ import { BooksService } from '../../services/books.service';
 import { CartService } from '../../services/cart.service';
 import { OrderSave } from '../../domain/order/orderSave';
 import { catchError } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -21,12 +23,31 @@ export class CartComponent {
     const formattedDate = now.toISOString().split('T')[0];
     const orderedBooks = this.orderedBooks;
 
+    
+    const token = this.authService.getToken();
+    const userID = this.authService.getUserID();
+
+    if(token === null || userID === null) {
+      alert('Please log in to continue!');
+      this.router.navigate(['/login']);
+      return;
+    }
+
     const orderSave : OrderSave = {
-      books : orderedBooks,
+      userId: userID,
+      items : orderedBooks.map(item => {
+        return {
+          bookId: item.id,
+          amount: item.orderAmount!
+        } 
+      }),
       date: now
     };
 
-    this.service.saveOrder(orderSave).subscribe({
+    console.log("Saving order. Data: ",JSON.stringify(orderSave));
+
+    alert(`ORDER: ${JSON.stringify(orderSave)}`)
+    this.service.saveOrder(orderSave, token).subscribe({
       next: () => alert('Order placed successfully!'),
       error: (error) => alert(JSON.stringify(error)),
     });
@@ -35,6 +56,8 @@ export class CartComponent {
 
   orderedBooks : Array<BookFull>;
   service: CartService = inject(CartService);
+  authService: AuthService = inject(AuthService);
+  router: Router = inject(Router);
 
     constructor() {
       this.orderedBooks = [];

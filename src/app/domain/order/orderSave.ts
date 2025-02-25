@@ -1,6 +1,8 @@
 import { BookFull } from "../book/bookFull"
+import { OrderItemSave } from "../orderItem/orderItemSave"
 
 export type OrderSave = {
-    books: Array<BookFull>,
+    userId: number,
+    items: OrderItemSave[],
     date: Date
 }

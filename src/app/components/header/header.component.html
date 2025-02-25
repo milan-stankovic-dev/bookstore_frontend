@@ -1,10 +1,13 @@
 <nav> 
     <ul>
-    <!-- @for (item of paths; track $index) {
-        <li>{{ item }}</li>
-    } -->
         <li routerLink="/">{{ paths[0] }}</li>
         <li routerLink="/books">{{ paths[1] }}</li>
-        <li routerLink="/cart">{{ paths[2] }}</li>
+        @if (isUserLoggedIn()) {
+            <li routerLink="/cart">{{ paths[2] }}</li>
+            <li routerLink="/logout">{{ 'logout' }}</li>
+        } @else {
+        <li routerLink="/register"> register </li>
+        <li routerLink="/login"> {{ paths[3] }}</li>
+        }
     </ul>
 </nav>
