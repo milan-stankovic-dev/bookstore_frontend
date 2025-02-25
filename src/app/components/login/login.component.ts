@@ -37,14 +37,14 @@ form = new FormGroup({
       email: userEmail!,
       password: userPassword!
     }
-    alert('Request: ' + JSON.stringify(requestData)); 
 
     this.service.login(requestData).subscribe({
       next: response => {
         const token = response.token;
         const userID = response.userID;
-        alert('User logged in correctly! ' +
-            JSON.stringify(token));
+        alert('You have logged in correctly!');
+        console.log(JSON.stringify(response));
+        
         localStorage.setItem('token', token);
         localStorage.setItem('userID', userID.toString());
         
