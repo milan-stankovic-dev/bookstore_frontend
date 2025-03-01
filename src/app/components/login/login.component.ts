@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginRequest } from '../../domain/auth/LoginRequest';
 import { AuthService, RedirectableRoutes } from '../../services/auth.service';
+import { ErrorService } from '../../services/error.service';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,8 @@ import { AuthService, RedirectableRoutes } from '../../services/auth.service';
 })
 export class LoginComponent {
 submitted = false;
-service = inject(AuthService)
+service = inject(AuthService);
+errorService = inject(ErrorService);
 
 form = new FormGroup({
   email: new FormControl('', [Validators.required, Validators.nullValidator, Validators.minLength(1)]),
@@ -20,7 +22,7 @@ form = new FormGroup({
 });
 
   onSubmit() {
-    this.submitted = true;
+    
     console.log("Submit attempted!");
 
     const userEmail = this.form.get('email')?.value;
@@ -40,6 +42,7 @@ form = new FormGroup({
 
     this.service.login(requestData).subscribe({
       next: response => {
+        this.submitted = true;
         const token = response.token;
         const userID = response.userID;
         alert('You have logged in correctly!');
@@ -50,7 +53,7 @@ form = new FormGroup({
         
         this.service.navigateTo(RedirectableRoutes.HOME, 2000);
       },
-      error: err => alert(JSON.stringify(err))
+      error: err => this.errorService.displayErrorMessage(err)
     });
   }
 

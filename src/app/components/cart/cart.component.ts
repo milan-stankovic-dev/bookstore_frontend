@@ -7,6 +7,7 @@ import { OrderSave } from '../../domain/order/orderSave';
 import { catchError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ErrorService } from '../../services/error.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,8 +18,6 @@ import { Router } from '@angular/router';
 export class CartComponent {
 
   attemptOrder() {
-  // throw new Error('Method not implemented.');
-    // console.log('Order attempted. Ordered books: ', this.orderedBooks);
     const now = new Date();
     const formattedDate = now.toISOString().split('T')[0];
     const orderedBooks = this.orderedBooks;
@@ -48,7 +47,7 @@ export class CartComponent {
 
     this.service.saveOrder(orderSave, token).subscribe({
       next: () => alert('Order placed successfully!'),
-      error: (error) => alert(JSON.stringify(error)),
+      error: (error) => this.errorService.displayErrorMessage(error),
     });
     this.orderedBooks = [];
   }
@@ -57,6 +56,7 @@ export class CartComponent {
   service: CartService = inject(CartService);
   authService: AuthService = inject(AuthService);
   router: Router = inject(Router);
+  errorService = inject(ErrorService);
 
     constructor() {
       this.orderedBooks = [];

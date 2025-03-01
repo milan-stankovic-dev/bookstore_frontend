@@ -4,6 +4,7 @@ import { AuthService, RedirectableRoutes } from '../../services/auth.service';
 import { RegisterRequest } from '../../domain/auth/RegisterRequest';
 import { UserRoles } from '../../domain/auth/userRole';
 import { LoginRequest } from '../../domain/auth/LoginRequest';
+import { ErrorService } from '../../services/error.service';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +16,9 @@ import { LoginRequest } from '../../domain/auth/LoginRequest';
 export class RegisterComponent {
   submitted = false;
   authService = inject(AuthService);
+  errorService = inject(ErrorService);
 
   onSubmit() {
-    this.submitted = true;
     console.log('Submit attempted!');
 
     const userName = this.form.get('name')?.value;
@@ -51,6 +52,7 @@ export class RegisterComponent {
 
         this.authService.login(loginRequest).subscribe({
           next: response => {
+            this.submitted = true;
              localStorage.setItem('token', response.token);
              localStorage.setItem('userID', response.userID.toString());
           
@@ -58,14 +60,14 @@ export class RegisterComponent {
           },
           error: err => {
             alert(`Could not login after successful registration. Error: 
-              ${JSON.stringify(err)}`)
-
+              ${err.error.errors[0]}`);
+              
             this.authService.navigateTo(RedirectableRoutes.LOGIN, 3500);
           }
         })
       },
       error : err => {
-        alert(`REGISTRATION FAILED! ${JSON.stringify(err)}`);
+        this.errorService.displayErrorMessage(err);
       }
     })
 
