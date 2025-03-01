@@ -1,6 +1,8 @@
 .containerDiv {
     // border: 5px solid black; 
     // box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); 
+    position:relative;
+    z-index: 2;
     font-family: 'Arial', sans-serif; 
     font-size: 16px;
     color: #261916; 
@@ -72,6 +74,8 @@ dialog {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     background-color: darkgrey;
     text-align: center;
+    position: relative;
+    z-index: 3;
 }
 
 dialog[open] {
@@ -86,4 +90,9 @@ dialog[open] {
 
 .numInput {
     width: 100px;
+}
+
+.dialog-div {
+    display: flex;
+    justify-content: center;
 }

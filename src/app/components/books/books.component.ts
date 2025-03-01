@@ -16,8 +16,11 @@ export class BooksComponent implements OnInit{
 
 onPageSelected($event: number) {
   this.service.getAllBooks($event - 1, 2)
-  .pipe(catchError(err=> {console.log(err); throw err}))
-  .subscribe(response => {
+  .pipe(catchError(err=> {
+    console.log(err); 
+    // alert(err.err.errors[0]);
+    throw err
+  })).subscribe(response => {
     this.booksFromAPI = response.books;
   });
 }

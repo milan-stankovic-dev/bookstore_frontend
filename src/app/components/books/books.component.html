@@ -1,9 +1,14 @@
+<div class="background-container">
+    <img class="background-img" src="/booksBg.jpg" alt="could not load image">
 <div class="books-container">
 @for (book of this.booksFromAPI; track book.id) {
     <app-book [book]="book"></app-book>
 }
 </div>
 
+<div class="btns-display">
 <app-paging-buttons 
 [numberOfPages]="numOfPages"
 (selectedPage)="onPageSelected($event)"></app-paging-buttons>
+</div>
+</div>

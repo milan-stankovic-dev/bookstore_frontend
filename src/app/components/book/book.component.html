@@ -21,7 +21,7 @@
     @if(book().orderAmount) {
       <p class="info-order">Order Amount: {{ book().orderAmount }}</p>
     }
-    
+    <div class="dialog-div">
     <dialog #orderDialog>
          <p>Please enter the number of copies you would like to order.</p>
          <div class="modal-container">
@@ -31,6 +31,7 @@
          <button (click)="orderAttempt()" [disabled]="!orderAmount || orderAmount <= 0">Accept</button>
          </div>
     </dialog>
+  </div>
 
     @if(!book().hideOrderButton) {
       @if(!isUserLoggedIn()) {
